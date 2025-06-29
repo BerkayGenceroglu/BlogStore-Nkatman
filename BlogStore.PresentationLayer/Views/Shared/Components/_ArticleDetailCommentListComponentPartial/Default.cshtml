@@ -1,0 +1,85 @@
+﻿@model List<BlogStore.EntityLayer.Entities.Comment>
+
+<div class="pt-5 comment-wrap">
+    <h3 class="mb-5 heading">@Model.Count Yorum</h3>
+    <ul class="comment-list">
+        @foreach (var item in Model)
+        {
+            <li class="comment">
+                <div class="vcard">
+                    <img src="@item.AppUser.ImageUrl" alt="Image placeholder">
+                </div>
+                <div class="comment-body">
+                    <h3>@item.AppUser.Name @item.AppUser.Surname</h3>
+                    <div class="meta">@item.CommentDate.ToString("dd.MM.yyyy")</div>
+                    <p>@item.Description</p>
+                    <p><a href="#" class="reply rounded">Yanıtla</a></p>
+                </div>
+            </li>
+        }
+    </ul>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form id="commentForm" method="post" action="/Comment/CreateComment">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="ArticleId" value="@ViewBag.ArticleId" />
+            <div class="form-group">
+                <label for="Description">Yorumunuz</label>
+                <textarea name="Description" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Yorumu Gönder</button>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-info mt-3">
+            Yorum yapmak için <a href="/Login">giriş yapmalısınız</a>.
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#commentForm').submit(function (e) {
+                e.preventDefault();
+
+                var form = $(this);
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+                    headers: {
+                        'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (result) {
+                        Swal.fire({
+                            icon: result.status === "success" ? 'success' :
+                                result.status === "toxic" ? 'warning' : 'error',
+                            title: result.status === "success" ? 'Başarılı!' :
+                                result.status === "toxic" ? 'Uygunsuz Yorum' : 'Hata!',
+                            text: result.message,
+                            confirmButtonColor: '#3085d6'
+                        }).then(() => {
+                            if (result.status === "success") {
+                                location.reload(); // Yorum güncellensin
+                            }
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Sunucu Hatası',
+                            text: 'Yorum gönderilemedi.',
+                            confirmButtonColor: '#dc3545'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

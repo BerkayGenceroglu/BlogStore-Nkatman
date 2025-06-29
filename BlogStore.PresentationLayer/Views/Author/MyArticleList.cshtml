@@ -1,0 +1,21 @@
+﻿@model List<BlogStore.EntityLayer.Entities.Article>
+@{
+    ViewData["Title"] = "MyArticleList";
+    Layout = "~/Views/Shared/_AuthorLayout.cshtml";
+}
+
+<h1>Makale Listeniz</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>Makale Başlığı</th>
+        <th>Sitede gör</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td><a href="/Article/ArticleDetail/@item.ArticleId" class="btn btn-primary">Sitede Gör</a></td>
+        </tr>
+    }
+</table>
+
