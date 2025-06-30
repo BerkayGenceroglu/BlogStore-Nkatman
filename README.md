@@ -58,79 +58,113 @@ Proje, katmanlı mimari (Layered Architecture) yapısı ile geliştirilmiştir:
 ## 📸 Ekran Görüntüleri
 
 ### 📌 Ana Sayfa - Blog Listeleme
-
-![Ana Sayfa - Blog Listeleme](./screenshots/d690b93d-9c82-4039-8011-156ad5a9b1dd.png)
+![image](https://github.com/user-attachments/assets/cb53e93e-7723-48b4-8177-41e7d2fbd7af)
+![image](https://github.com/user-attachments/assets/eff670b7-a145-40a7-9211-64c97b1d9033)
+![image](https://github.com/user-attachments/assets/b2138feb-28b3-4e1f-a51e-07a4e4f45d2a)
+![image](https://github.com/user-attachments/assets/a9231aad-7878-432e-ab54-ed2722c23146)
+📄 Kullanıcılar tarafından yazılan tüm makalelerin tarih, kategori ve görsel ile birlikte listelendiği sayfa.
+!
 
 ---
 
 ### 📌 Makale Detay Sayfası
 
-![Makale Detay Sayfası](./screenshots/6bbc1678-ac18-4f7b-9c22-5e09d55f5658.png)
+![image](https://github.com/user-attachments/assets/41bb0896-7ed5-44c5-b737-98267620d978)
+![image](https://github.com/user-attachments/assets/0aa56e60-fb66-4cfa-858f-0cf7cb8e2460)
+📝 Bir makalenin tam içeriğinin, yazara ait bilgilerle birlikte detaylı olarak gösterildiği ekran.
+
+
 
 ---
 
 ### 📌 Yorumlar Bölümü
 
-![Yorumlar Bölümü](./screenshots/277f43c9-a18d-4e8d-8fca-63003bc7686e.png)
+![image](https://github.com/user-attachments/assets/19b5aaf7-f32d-4a16-80e1-3392b1d97d45)
+📝 Bir makalenin tam içeriğinin, yazara ait bilgilerle birlikte detaylı olarak gösterildiği ekran.
+
+
 
 ---
 
 ### 📌 Yazarlar Sayfası
 
-![Yazarlar Sayfası](./screenshots/11543c55-7fb5-4260-888e-e3b970d17ba2.png)
+![image](https://github.com/user-attachments/assets/e1f10dae-6868-4fbd-afd3-b8d963e06d26)
+👤 Tüm yazarların görselleriyle birlikte listelendiği, her bir yazarın profiline erişim sağlayan tanıtım ekranı.
+
 
 ---
 
 ### 📌 Kategoriye Göre Makale Filtreleme
 
-![Kategoriye Göre Makale Filtreleme](./screenshots/1e58b3c9-c648-4812-bc03-e1158a2be92c.png)
+![image](https://github.com/user-attachments/assets/e0fdfae3-a842-4cbc-8273-f18c51eae442)
+📚 Kullanıcıların belirli bir kategori seçerek sadece o kategoriye ait makaleleri görüntüleyebildiği filtreleme ekranı.
 
 ---
 
 ### 📌 Kayıt Ol Sayfası
 
-![Kayıt Ol Sayfası](./screenshots/6a91705c-25b2-4cc5-bba9-396ea23fd9ca.png)
+![image](https://github.com/user-attachments/assets/7926346e-3720-4789-8fc8-56003f16d294)
+🧾 Yeni kullanıcıların ad, soyad, e-posta ve şifre bilgileriyle sisteme kayıt olduğu form ekranı.
 
 ---
 
 ### 📌 Giriş Yap Sayfası
+![image](https://github.com/user-attachments/assets/acb3ad04-7f1b-424c-a3ac-69f8ce93fa9a)
+🔐 Sisteme daha önce kayıtlı kullanıcıların giriş yaptığı kullanıcı adı ve şifre formu.
 
-![Giriş Yap Sayfası](./screenshots/024c6c67-3cb5-4baf-9d58-c459b83be1ec.png)
+
 
 ---
 
 ### 📌 Yazar Profili
 
-![Yazar Profili](./screenshots/de274368-5419-4378-908c-7adb9da61b73.png)
+![image](https://github.com/user-attachments/assets/075a5b56-d26e-4fd9-aa29-c013a2f9159d)
+👨‍💼 Yazarın fotoğrafı, adı, e-posta adresi ve hakkında açıklamalarla birlikte profilinin görüntülendiği sayfa.
+
+
+
 
 ---
 
 ### 📌 Profil Güncelleme
 
-![Profil Güncelleme](./screenshots/6ca933b8-352b-4e7f-bfc8-4fb041a39bf7.png)
+![image](https://github.com/user-attachments/assets/5857b71c-4daf-45a1-b1b5-007bb39aba4f)
+🛠️ Yazarların profil fotoğrafı, açıklama ve kişisel bilgilerini düzenleyebildiği sayfa.
+
 
 ---
 
 ### 📌 Yeni Makale Oluşturma
 
-![Yeni Makale Oluşturma](./screenshots/508fa96a-c791-436f-90f1-9abbdf5790e7.png)
+![image](https://github.com/user-attachments/assets/b26cdb00-0bd9-43a8-84ef-e6c8d7931933)
+🖊️ Yazarların başlık, görsel, kategori ve içerik belirleyerek yeni bir makale oluşturduğu form sayfası.
+
+
+
 
 ---
 
 ### 📌 Makale Listeleme (Yazara Özel)
 
-![Makale Listeleme (Yazara Özel)](./screenshots/3c40c3d6-8ec2-408a-a97d-51a1459cd305.png)
+![image](https://github.com/user-attachments/assets/7deb693d-00d0-43bd-b103-c673267d7467)
+📑 Sadece oturum açmış yazarın kendi oluşturduğu makaleleri görüntüleyebildiği özel liste ekranı.
+
+
 
 ---
 
 ### 📌 Yazar Paneli Dashboard - İstatistik
 
-![Yazar Paneli Dashboard - İstatistik](./screenshots/bf681cc4-0c6c-45b2-a03d-158830645e7f.png)
+![image](https://github.com/user-attachments/assets/d2677242-3ff3-4a88-a52d-2958f5eed2bf)
+📊 Yazara özel gösterge panelinde, kategorilere göre makale sayılarını ve dağılımını gösteren grafikler.
+
+
 
 ---
 
 ### 📌 Yazar Paneli Dashboard - Son İçerikler ve Yorumlar
 
-![Yazar Paneli Dashboard - Son İçerikler ve Yorumlar](./screenshots/72b1b0ef-be7f-4f01-865e-4626039b29c5.png)
+![image](https://github.com/user-attachments/assets/7938bd41-522f-41ff-bdb2-51b5b1e1fbbd)
+📊 Yazara özel gösterge panelinde, kategorilere göre makale sayılarını ve dağılımını gösteren grafikler.
 
 ---
