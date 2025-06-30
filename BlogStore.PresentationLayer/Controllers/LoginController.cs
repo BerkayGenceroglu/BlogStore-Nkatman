@@ -24,7 +24,7 @@ namespace BlogStore.PresentationLayer.Controllers
             var result = await _signInManager.PasswordSignInAsync(loginViewModel.Username, loginViewModel.Password, true, false);
             if (result.Succeeded)
             {
-                return RedirectToAction("CreateArticle", "Author");
+                return RedirectToAction("GetProfile", "Author");
             }
             return View();
             //Bu satır, kullanıcıdan gelen giriş bilgilerini alıp:

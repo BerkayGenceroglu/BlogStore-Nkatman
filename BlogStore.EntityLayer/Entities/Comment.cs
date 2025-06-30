@@ -9,14 +9,15 @@ namespace BlogStore.EntityLayer.Entities
     public class Comment
     {
         public int CommentId  { get; set; }
-        public string UserNameSurname { get; set; }
+        public string? UserNameSurname { get; set; }
         public DateTime CommentDate { get; set; }
         public string Description { get; set; }
         public bool IsValid { get; set; }
-        public string AppUserId { get; set; }
-        public AppUser AppUser { get; set; }
+        public string? AppUserId { get; set; }
+        public AppUser? AppUser { get; set; }
         public int ArticleId { get; set; }
-        public virtual Article Article { get; set; }
-
+        public virtual Article? Article { get; set; }
+        public bool IsToxic { get; set; }
+        public float? ToxicityScore { get; set; }
     }
 }

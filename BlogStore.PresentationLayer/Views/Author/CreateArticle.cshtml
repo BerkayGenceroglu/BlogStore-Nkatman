@@ -1,21 +1,48 @@
 ﻿@model BlogStore.EntityLayer.Entities.Article
+
 @{
     ViewData["Title"] = "CreateArticle";
     Layout = "~/Views/Shared/_AuthorLayout.cshtml";
 }
 
-<form method="post">
-    <label>Makale Başlığı</label>
-    <input type="text" asp-for="Title" class="form-control" />
-    <br />
-    <label>Makale Görseli</label>
-    <input type="text" asp-for="ImageUrl" class="form-control" />
-    <br />
-    <label>Makale Kategorisi</label>
-    @Html.DropDownListFor(x => x.CategoryId,(List<SelectListItem>)ViewBag.v,new{@class ="form-control"})
-    <br />
-    <label>Makale İçeriği</label>
-    <textarea asp-for="Description" class="form-control" rows="5"></textarea>
-    <br />
-    <button class="btn btn-primary">Makaleyi Oluştur</button>
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+                <h2 class="text-center mb-4">Yeni Makale Oluştur</h2>
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Makale Başlığı</label>
+                        <input type="text" asp-for="Title" class="form-control" placeholder="Başlık giriniz" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Makale Görseli (URL)</label>
+                        <input type="text" asp-for="ImageUrl" class="form-control" placeholder="https://..." />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Makale Kategorisi</label>
+                        @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.v,
+                                 "Kategori Seçiniz", new { @class = "form-control" })
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Makale İçeriği</label>
+                        <textarea asp-for="Description" class="form-control" rows="6" placeholder="Makale içeriğini yazınız..."></textarea>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
+                            Makaleyi Oluştur
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

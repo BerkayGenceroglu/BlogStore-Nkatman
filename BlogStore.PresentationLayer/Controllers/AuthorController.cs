@@ -26,6 +26,9 @@ namespace BlogStore.PresentationLayer.Controllers
             ViewBag.Name = userProfile.Name;
             ViewBag.Surname = userProfile.Surname;
             ViewBag.id = userProfile.Id;
+            ViewBag.ImageUrl = userProfile.ImageUrl;
+            ViewBag.Description = userProfile.Desctiption;
+            ViewBag.Email = userProfile.Email;
             return View();
         }
         [HttpGet]
@@ -55,5 +58,40 @@ namespace BlogStore.PresentationLayer.Controllers
             var values = _articleService.TGetArticlesByAppUser(userProfile.Id);
             return View(values);
         }
+        [HttpGet]
+        public async Task<IActionResult> UpdateProfile()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            return View(user); // View'da model olarak AppUser kullanılacak
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(AppUser updatedUser)
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            // Sadece güncellenebilir alanlar değiştirilir
+            user.Name = updatedUser.Name;
+            user.Surname = updatedUser.Surname;
+            user.Email = updatedUser.Email;
+            user.Desctiption = updatedUser.Desctiption;
+            user.ImageUrl = updatedUser.ImageUrl;
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("GetProfile");
+            }
+
+            // Hata varsa View'a dön
+            return View(user);
+        }
+        public async Task<IActionResult> Dashboards()
+        {
+            return View();
+        }
+
+
     }
 }

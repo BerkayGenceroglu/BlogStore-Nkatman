@@ -18,28 +18,48 @@ namespace BlogStore.PresentationLayer.Controllers
             var values = _commentService.TGetAll();
             return View(values);
         }
+
         [HttpGet]
         public IActionResult CreateComment()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult CreateComment(Comment comment)
         {
-            _commentService.TInsert(comment);
-            return RedirectToAction("CommentList");
+            try
+            {
+                if (string.IsNullOrWhiteSpace(comment.Description))
+                {
+                    return Json(new { status = "error", message = "Yorum alanı boş olamaz." });
+                }
+
+                comment.CommentDate = DateTime.Now;
+
+
+                _commentService.TInsert(comment);
+                return Json(new { status = "success", message = "Yorum başarıyla eklendi!" });
+            }
+            catch (Exception)
+            {
+                return Json(new { status = "error", message = "Yorum gönderilirken bir hata oluştu." });
+            }
         }
+
         public IActionResult DeleteComment(int id)
         {
             _commentService.TDelete(id);
             return RedirectToAction("CommentList");
         }
+
         [HttpGet]
         public IActionResult UpdateComment(int id)
         {
             var value = _commentService.TGetById(id);
             return View(value);
         }
+
         [HttpPost]
         public IActionResult UpdateComment(Comment comment)
         {

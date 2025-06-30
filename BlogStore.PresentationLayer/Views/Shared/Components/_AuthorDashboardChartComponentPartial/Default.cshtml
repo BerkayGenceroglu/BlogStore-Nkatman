@@ -1,0 +1,114 @@
+﻿@model List<CategoryArticleCountDto>
+@using System.Text.Json
+@using BlogStore.DataAccessLayer.Dtos
+
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">📊 Genel İstatistikler</h2>
+        <p class="text-muted">Kategori bazlı makale analizleri aşağıda yer almaktadır.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        <!-- Bar Chart -->
+        <div class="col-lg-6 col-md-10">
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+                <h5 class="text-center mb-3">📌 Kategoriye Göre Makale Sayısı</h5>
+                <div id="barChart"></div>
+            </div>
+        </div>
+
+        <!-- Donut Chart -->
+        <div class="col-lg-6 col-md-10">
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+                <h5 class="text-center mb-3">🍩 Kategori Dağılımı (Yüzdelik)</h5>
+                <div id="donutChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ApexCharts CDN -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    // C# verisini JavaScript'e geçiriyoruz
+    var categoryNames = @Html.Raw(JsonSerializer.Serialize(Model.Select(x => x.CategoryName)));
+    var articleCounts = @Html.Raw(JsonSerializer.Serialize(Model.Select(x => x.ArticleCount)));
+
+    // Bar Chart Ayarları
+    var barOptions = {
+        chart: {
+            type: 'bar',
+            height: 350,
+            toolbar: { show: false }
+        },
+        series: [{
+            name: 'Makale Sayısı',
+            data: articleCounts
+        }],
+        xaxis: {
+            categories: categoryNames,
+            labels: {
+                style: {
+                    fontSize: '13px'
+                }
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            style: {
+                fontSize: '12px'
+            }
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 6,
+                columnWidth: '45%'
+            }
+        },
+        colors: ['#4e73df'],
+        title: {
+            text: '',
+            align: 'center'
+        }
+    };
+
+    new ApexCharts(document.querySelector("#barChart"), barOptions).render();
+
+    // Donut Chart Ayarları
+    // Pie Chart Ayarları (Donut yerine Pie)
+    var donutOptions = {
+        chart: {
+            type: 'pie',  // <- donut yerine pie oldu
+            height: 350
+        },
+        series: articleCounts,
+        labels: categoryNames,
+        colors: ['#00E396', '#FEB019', '#FF4560', '#775DD0', '#546E7A', '#26A69A', '#D4526E'],
+        title: {
+            text: 'Kategori Dağılımı (Pasta Grafik)',
+            align: 'center',
+            style: {
+                fontSize: '18px'
+            }
+        },
+        legend: {
+            position: 'bottom'
+        },
+        dataLabels: {
+            enabled: true,
+            style: {
+                fontSize: '13px'
+            }
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                chart: { width: 300 },
+                legend: { position: 'bottom' }
+            }
+        }]
+    };
+
+    new ApexCharts(document.querySelector("#donutChart"), donutOptions).render();
+</script>

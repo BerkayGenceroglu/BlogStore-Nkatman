@@ -1,0 +1,64 @@
+﻿@model List<BlogStore.EntityLayer.Entities.Article>
+
+<div class="col-12">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-body">
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between mb-4">
+                <div>
+                    <h4 class="fw-bold mb-2 mb-md-0">
+                        📝 Son Yüklediğim Makaleler
+                    </h4>
+                    <p class="text-muted mb-0 fs-6">Yayınladığın makaleleri buradan takip edebilirsin.</p>
+                </div>
+                <div>
+                    <select class="form-select form-select-sm rounded-pill shadow-sm border w-auto">
+                        <option selected>Mart 2025</option>
+                        <option>Nisan 2025</option>
+                        <option>Mayıs 2025</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle text-nowrap">
+                    <thead class="table-light">
+                        <tr class="text-muted fw-semibold">
+                            <th scope="col">Makale</th>
+                            <th scope="col">Tarih</th>
+                            <th scope="col" class="text-center">İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="align-middle">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="@item.ImageUrl" alt="Makale Görseli"
+                                             class="rounded-circle me-3 shadow-sm border"
+                                             width="48" height="48" style="object-fit: cover;" />
+                                        <div>
+                                            <div class="fw-semibold">@item.Title</div>
+                                            <div class="text-muted small"
+                                                 style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                                @item.Description.Substring(0, 115)...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-muted">@item.CreatedDate.ToString("dd MMM yyyy")</td>
+                                <td class="text-center">
+                                    <a href="/Article/ArticleDetail/@item.Slug"
+                                       class="btn btn-sm btn-primary rounded-pill px-3 shadow-sm">
+                                        <i class="ti ti-eye me-1"></i> Görüntüle
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

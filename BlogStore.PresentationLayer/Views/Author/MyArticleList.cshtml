@@ -1,21 +1,42 @@
 ﻿@model List<BlogStore.EntityLayer.Entities.Article>
+
 @{
     ViewData["Title"] = "MyArticleList";
     Layout = "~/Views/Shared/_AuthorLayout.cshtml";
 }
 
-<h1>Makale Listeniz</h1>
-<table class="table table-bordered">
-    <tr>
-        <th>Makale Başlığı</th>
-        <th>Sitede gör</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Title</td>
-            <td><a href="/Article/ArticleDetail/@item.ArticleId" class="btn btn-primary">Sitede Gör</a></td>
-        </tr>
-    }
-</table>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Makale Listeniz</h2>
 
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0 rounded-4">
+                    <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/default-article.jpg" : item.ImageUrl)"
+                         class="card-img-top rounded-top"
+                         alt="Makale Görseli"
+                         style="height: 200px; object-fit: cover;">
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@item.Title</h5>
+
+                        <p class="card-text"
+                           style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                            @item.Description
+                        </p>
+
+                        <div class="mt-auto text-end">
+                            <a href="/Article/ArticleDetail/@item.Slug"
+                               class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                Sitede Gör
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

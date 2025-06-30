@@ -1,37 +1,47 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+
+@await Component.InvokeAsync("_AuthorLayoutHeadComponentPartial")
+
 <body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed">
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Blog Store</a>
+        <!--  App Topstrip -->
+        <div class="app-topstrip bg-dark py-6 px-3 w-100 d-lg-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-center gap-5 mb-2 mb-lg-0">
+                <a class="d-flex justify-content-center" href="#">
+                    <img src="/flexy-bootstrap-lite-1.0.0/assets/images/logos/logo-wrappixel.svg" alt="" width="150">
+                </a>
+
+
             </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/Default/Index">Anasayfa</a></li>
-                <li><a href="/Author/CreateArticle">Yeni Blog</a></li>
-                <li><a href="/Author/MyArticleList">Bloglarım</a></li>
-                <li><a href="#">Yorumlarım</a></li>
-            </ul>
-        </div> 
-    </nav>
 
-    <div class="container">
-        @RenderBody()
+        </div>
+        <!-- Sidebar Start -->
+        @await Component.InvokeAsync("_AuthorLayoutSidebarComponentPartial")
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+        <!--  Header Start -->
+        <!--  Header End -->
+        <div class="body-wrapper">
+            @await Component.InvokeAsync("_AuthorLayoutNavbarComponentPartial")
+            <div class="body-wrapper-inner">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
     </div>
 
+    @await Component.InvokeAsync("_AuthorLayoutScriptComponentPartial")
+    <!-- solar icons -->
+
 </body>
+
 </html>

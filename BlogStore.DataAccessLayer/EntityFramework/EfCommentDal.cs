@@ -24,5 +24,12 @@ namespace BlogStore.DataAccessLayer.EntityFramework
             var values = _context.Comments.Include(x => x.AppUser).Include(x => x.Article).Where(x => x.ArticleId == id && x.IsValid == true).ToList();
             return values;
         }
+
+        public List<Comment> GetLast3CommentByUserArticle(string id)
+        {
+            var values = _context.Comments.Include(x => x.AppUser).Include(x => x.Article)
+                .Where(x => x.Article.AppUserId == id && x.IsValid == true).OrderByDescending(x => x.CommentDate).Take(3).ToList();
+            return values;
+        }
     }
 }

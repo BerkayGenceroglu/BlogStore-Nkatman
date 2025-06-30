@@ -1,0 +1,48 @@
+﻿@model BlogStore.EntityLayer.Entities.AppUser
+
+@{
+    ViewData["Title"] = "Profil Bilgilerini Güncelle";
+    Layout = "~/Views/Shared/_AuthorLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4 border-0 rounded-4">
+                <h2 class="text-center mb-4">Profilini Güncelle</h2>
+
+                <form asp-action="UpdateProfile" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Adınız</label>
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Soyadınız</label>
+                        <input asp-for="Surname" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">E-Posta</label>
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Profil Fotoğrafı (URL)</label>
+                        <input asp-for="ImageUrl" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Hakkınızda</label>
+                        <textarea asp-for="Desctiption" class="form-control" rows="4"></textarea>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success px-4 py-2 rounded-pill">Bilgileri Güncelle</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

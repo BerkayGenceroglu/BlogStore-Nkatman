@@ -184,8 +184,14 @@ namespace BlogStore.DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsToxic")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsValid")
                         .HasColumnType("bit");
+
+                    b.Property<float?>("ToxicityScore")
+                        .HasColumnType("real");
 
                     b.Property<string>("UserNameSurname")
                         .IsRequired()

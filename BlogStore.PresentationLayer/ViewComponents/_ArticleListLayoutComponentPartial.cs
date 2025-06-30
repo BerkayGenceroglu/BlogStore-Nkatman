@@ -1,4 +1,5 @@
 ﻿using BlogStore.BusinessLayer.Abstract;
+using BlogStore.EntityLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogStore.PresentationLayer.ViewComponents
@@ -14,7 +15,7 @@ namespace BlogStore.PresentationLayer.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var values = _articleService.TGetArticlesWithCategories();
+            var values = _articleService.TGetArticlesWithCategoriesAll();
             return View(values);
         }
     }

@@ -38,6 +38,11 @@ namespace BlogStore.BusinessLayer.Concrete
             return _commentDal.GetCommentsByArticleId(id);
         }
 
+        public List<Comment> TGetLast3CommentByUserArticle(string id)
+        {
+            return _commentDal.GetLast3CommentByUserArticle(id);
+        }
+
         public void TInsert(Comment entity)
         {
             _commentDal.Insert(entity);

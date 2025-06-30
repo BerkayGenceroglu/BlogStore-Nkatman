@@ -19,24 +19,17 @@
         }
     </ul>
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        <form id="commentForm" method="post" action="/Comment/CreateComment">
-            @Html.AntiForgeryToken()
-            <input type="hidden" name="ArticleId" value="@ViewBag.ArticleId" />
-            <div class="form-group">
-                <label for="Description">Yorumunuz</label>
-                <textarea name="Description" class="form-control" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Yorumu Gönder</button>
-        </form>
-    }
-    else
-    {
-        <div class="alert alert-info mt-3">
-            Yorum yapmak için <a href="/Login">giriş yapmalısınız</a>.
+    <!-- Yorum Formu -->
+    <form id="commentForm" method="post" action="/Comment/CreateComment">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="ArticleId" value="@ViewBag.id" />
+        <div class="form-group">
+            <label for="Description">Yorumunuz</label>
+            <textarea name="Description" class="form-control" rows="5" required></textarea>
         </div>
-    }
+        <button type="submit" class="btn btn-primary">Yorumu Gönder</button>
+    </form>
+
 </div>
 
 @section Scripts {
@@ -45,41 +38,43 @@
 
     <script>
         $(document).ready(function () {
-            $('#commentForm').submit(function (e) {
-                e.preventDefault();
+               $('#commentForm').submit(function (e) {
+                   e.preventDefault(); // Formun normal submit olmasını engelle
 
-                var form = $(this);
-                $.ajax({
-                    url: form.attr('action'),
-                    type: 'POST',
-                    data: form.serialize(),
-                    headers: {
-                        'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
-                    },
-                    success: function (result) {
-                        Swal.fire({
-                            icon: result.status === "success" ? 'success' :
-                                result.status === "toxic" ? 'warning' : 'error',
-                            title: result.status === "success" ? 'Başarılı!' :
-                                result.status === "toxic" ? 'Uygunsuz Yorum' : 'Hata!',
-                            text: result.message,
-                            confirmButtonColor: '#3085d6'
-                        }).then(() => {
-                            if (result.status === "success") {
-                                location.reload(); // Yorum güncellensin
-                            }
-                        });
-                    },
-                    error: function () {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Sunucu Hatası',
-                            text: 'Yorum gönderilemedi.',
-                            confirmButtonColor: '#dc3545'
-                        });
-                    }
-                });
-            });
-        });
+                   $.ajax({
+                       type: 'POST',
+                       url: '/Comment/CreateComment',
+                       data: $(this).serialize(), // Form verilerini al
+                       success: function (response) {
+                           if (response.status === "success") {
+                               Swal.fire({
+                                   icon: 'success',
+                                   title: 'Başarılı!',
+                                   text: response.message,
+                                   confirmButtonText: 'Tamam'
+                               }).then(() => {
+                                   location.reload(); // Yorumu göstermek için sayfayı yenile
+                               });
+                           } else {
+                               Swal.fire({
+                                   icon: 'error',
+                                   title: 'Hata!',
+                                   text: response.message,
+                                   confirmButtonText: 'Tamam'
+                               });
+                           }
+                       },
+                       error: function () {
+                           Swal.fire({
+                               icon: 'error',
+                               title: 'Hata!',
+                               text: 'Sunucuya bağlanırken bir hata oluştu.',
+                               confirmButtonText: 'Tamam'
+                           });
+                       }
+                   });
+               });
+           });
     </script>
 }
+
