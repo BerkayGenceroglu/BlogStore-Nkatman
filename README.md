@@ -1,24 +1,61 @@
 
-# BlogStore Projesi
+# BlogStore 📝
 
-ASP.NET Core MVC ile geliştirilmiş modern ve kullanıcı dostu bir blog platformu. Bu platformda kullanıcılar içerik oluşturabilir, yorum yapabilir ve yazarlara ait sayfalarda gezinerek içerikleri takip edebilirler.
+**BlogStore**, ASP.NET Core MVC ile geliştirilen, kullanıcıların makaleler oluşturup okuyabildiği, yorum yapabildiği, yazarlara özel profillerin bulunduğu, yönetici paneli ile içeriklerin kolayca takip edilebildiği çok katmanlı bir blog uygulamasıdır.
 
----
-
-## 🚀 Özellikler
-
-- Kullanıcı Kaydı ve Girişi (Identity)
-- Makale Oluşturma, Listeleme ve Filtreleme
-- Yorum Yapma ve Listeleme
-- Yazar Profili Yönetimi
-- Gelişmiş Dashboard Paneli
-- ViewComponent, AJAX ve SweetAlert2 entegrasyonu
-- NLP ile toksik yorum engelleme (ToxicBERT)
-- API üzerinden çeviri desteği (Hugging Face)
+Bu proje; gerçek bir blog sistemi geliştirmek isteyen yazılımcılar için hem frontend hem de backend alanında kapsamlı örnekler sunar. Aynı zamanda modern yazılım mimarisi olan katmanlı mimari (Layered Architecture) ile kodun sürdürülebilirliği artırılmıştır.
 
 ---
 
-## 🖼️ Ekran Görüntüleri
+## 🚀 Proje Özellikleri
+
+- ✅ Kullanıcı girişi ve kaydı (ASP.NET Core Identity ile)
+- ✅ Makale ekleme, silme, güncelleme ve detaylı görüntüleme
+- ✅ Makalelere kategori atama ve kategori bazlı listeleme
+- ✅ Kullanıcı yorumları (AJAX + ViewComponent destekli)
+- ✅ SweetAlert2 ile interaktif bildirim sistemi
+- ✅ HuggingFace ToxicBERT ile toksik yorum kontrolü
+- ✅ HuggingFace çeviri API ile yorum çevirisi (TR-EN)
+- ✅ Gelişmiş yönetici paneli: İstatistikler, içerik ve yorum kontrolü
+- ✅ Responsive tasarım (mobil ve tablet uyumu)
+- ✅ Kullanıcı profili düzenleme ve görsel güncelleme
+- ✅ ViewComponent, jQuery AJAX, Partial View yapıları ile modern yaklaşım
+
+---
+
+## 🛠️ Kullanılan Teknolojiler
+
+| Katman / Katkı         | Teknolojiler / Kütüphaneler                            |
+|------------------------|--------------------------------------------------------|
+| Backend (Sunucu)       | ASP.NET Core MVC 6.0, Entity Framework Core            |
+| Frontend (Arayüz)      | Razor View Engine, HTML, CSS, Bootstrap 5, jQuery      |
+| Veritabanı             | Microsoft SQL Server                                   |
+| Güvenlik               | ASP.NET Core Identity                                  |
+| API / NLP Servisleri   | Hugging Face (ToxicBERT, Çeviri API)                   |
+| Bildirim Sistemi       | SweetAlert2                                            |
+| Grafik & Dashboard     | Chart.js (kategori analizleri için)                    |
+
+---
+
+## 📁 Proje Yapısı
+
+Proje, katmanlı mimari (Layered Architecture) yapısı ile geliştirilmiştir:
+
+- **`BlogStore.PresentationLayer`**  
+  Kullanıcı arayüzü, controller sınıfları, ViewComponent’ler, Razor view’lar ve `Program.cs` gibi başlangıç ayarlarını içerir.
+
+- **`BlogStore.BusinessLayer`**  
+  Servis ve iş mantığı katmanı. `Manager` sınıfları ve interface tanımlamaları burada yer alır. SOLID prensipleriyle yazılmıştır.
+
+- **`BlogStore.DataAccessLayer`**  
+  Entity Framework Core ile veritabanı işlemlerinin gerçekleştiği katman. `EfRepository`, `Context` ve migration işlemleri bu katmanda yapılır.
+
+- **`BlogStore.EntityLayer`**  
+  Projede kullanılan temel varlık sınıfları (Entity’ler). `Article`, `Comment`, `AppUser`, `Category` gibi domain modellerini içerir.
+
+---
+
+## 📸 Ekran Görüntüleri
 
 ### 📌 Ana Sayfa - Blog Listeleme
 
